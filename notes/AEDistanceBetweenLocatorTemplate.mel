@@ -1,0 +1,31 @@
+global proc AEDistanceBetweenLocatorTemplate( string $nodeName ) // when you create a node, it will be passed to this function 
+{
+    // beginScrollLayout will add scroll bar to the editor template
+    // without this, some controls may not be visible if they exceed the window size
+    editorTemplate -beginScrollLayout; // start a scroll layout for the editor template
+    
+
+        // create a new layout to group the acual node attributes
+        editorTemplate -beginLayout "Distance Between Attribute" -collapse 0; // collapse is set to 0, so it will be expand the layout by default
+
+            // move the attributes to the new layout
+            editorTemplate -addControl "Point1"; // Point1 is the same name as the attribute in the node when you create it
+            editorTemplate -addControl "Point2";
+            editorTemplate -addControl "MaxDistance";
+            editorTemplate -addControl "MinDistance";
+
+            AEaddRampControl($nodeName + ".ColorRamp"); // this responsible for layout the ramp attribute in the attribute editor
+            AEaddRampControl($nodeName + ".CurveRamp"); // same for CurveRamp
+        
+        editorTemplate -endLayout; // end the new layout
+
+        
+    // this will move all attributes to single section named Extra Attributes
+    // but beware for ordering if you put this before the beginLayout, it will reflect the order of the attribute editor
+    editorTemplate -addExtraControls; 
+
+    editorTemplate -endScrollLayout; // end the scroll layout
+}
+
+// if you work inside the Maya editor, you can use this command to apply the changes to the attribute editor immediately
+// refreshEditorTemplate; 
