@@ -84,9 +84,20 @@ add_library(${PROJECT_NAME} SHARED
         ${CMAKE_CURRENT_SOURCE_DIR}/include/DistanceBetweenLocator_include/DistanceBetweenLocatorCommand.h
         ${CMAKE_CURRENT_SOURCE_DIR}/src/DistanceBetweenLocator_src/DistanceBetweenLocatorCommand.cpp
 
+    # ------------------- Z4 -------------------
+    # AnimCurveCmd
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimCurve_include/AnimCurveCmd.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimCurve_src/AnimCurveCmd.cpp
+
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/AnimCurve_include/AnimUtil.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/AnimCurve_src/AnimUtil.cpp
+
+    # RetimingTool
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/RetimingTool_include/RetimingToolCmd.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/RetimingTool_src/RetimingToolCmd.cpp
+
 
 )
-
 
 # additional include directories
 target_include_directories(${PROJECT_NAME} PRIVATE

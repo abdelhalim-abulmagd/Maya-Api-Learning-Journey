@@ -19,6 +19,11 @@
 #include <DistanceBetweenLocator_include/DistanceBetweenLocatorDrawOverride.h>
 #include <DistanceBetweenLocator_include/DistanceBetweenLocatorCommand.h>
 
+
+#include <AnimCurve_include/AnimCurveCmd.h>
+
+#include <RetimingTool_include/RetimingToolCmd.h>
+
 #include <maya/MFnPlugin.h>
 #include <maya/MDrawRegistry.h>
 #include <maya/MGlobal.h>
@@ -43,6 +48,7 @@ void OnTimerFired(float time, float prevTime, void* ClintData) // Callback funct
 }
 */
 
+
 MStatus initializePlugin(MObject PluginObj)
 {
 	MStatus Status;
@@ -50,6 +56,7 @@ MStatus initializePlugin(MObject PluginObj)
 
 	//CallbackIDs.append((MEventMessage::addEventCallback("timeChanged", OnTimeChange)));
 	//CallbackIDs.append(MTimerMessage::addTimerCallback(1, OnTimerFired));
+	
 
 	Status = PluginFn.registerCommand(HelloWorldCmd::TypeName, HelloWorldCmd::Creator);
 	if (!Status)
@@ -161,6 +168,20 @@ MStatus initializePlugin(MObject PluginObj)
 		return Status;
 	}
 	
+	Status = PluginFn.registerCommand(AnimCurveCmd::CommandName, AnimCurveCmd::Creator, AnimCurveCmd::CreateSyntax);
+	if (!Status)
+	{
+		MGlobal::displayError("Failed To Register : " + AnimCurveCmd::CommandName);
+		return Status;
+	}
+	Status = PluginFn.registerCommand(RetimingToolCmd::CommandName, RetimingToolCmd::Creator, RetimingToolCmd::CreateSyntax);
+	if (!Status)
+	{
+		MGlobal::displayError("Failed To Register : " + RetimingToolCmd::CommandName);
+		return Status;
+	}
+
+	
 	return MS::kSuccess;
 }
 
@@ -178,6 +199,18 @@ MStatus uninitializePlugin(MObject PluginObj)
 	}
 	CallbackIDs.clear();
 	*/
+	Status = PluginFn.deregisterCommand(RetimingToolCmd::CommandName);
+	if (!Status)
+	{
+		MGlobal::displayError("Failed To Deregister : " + RetimingToolCmd::CommandName);
+		return Status;
+	}
+	Status = PluginFn.deregisterCommand(AnimCurveCmd::CommandName);
+	if (!Status)
+	{
+		MGlobal::displayError("Failed To Deregister : " + AnimCurveCmd::CommandName);
+		return Status;
+	}
 
 	Status = PluginFn.deregisterCommand(DistanceBetweenLocatorCommand::CommandName);
 	if (!Status)

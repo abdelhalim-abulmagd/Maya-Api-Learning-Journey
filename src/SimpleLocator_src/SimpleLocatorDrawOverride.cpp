@@ -51,7 +51,7 @@ MUserData* SimpleLocatorDrawOverride::prepareForDraw(const MDagPath& objPath, co
 
 	if (DisplayStatus == MHWRender::kDormant)
 	{
-		UserData->Color = MColor(0, 0.1, 0);
+		UserData->Color = MColor(0.0f, 0.1f, 0.0f);
 	}
 	else
 	{

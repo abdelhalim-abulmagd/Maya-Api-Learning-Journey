@@ -45,7 +45,7 @@ MStatus DistanceBetweenLocatorCommand::doIt(const MArgList& Args)
 	DistanceBetweenObj = DagModifier.createNode(DistanceBetweenLocator::TypeId, TransformObj);
 	 
 
-	for (int i = 0; i < Selection.length(); i++)
+	for (unsigned i = 0; i < Selection.length(); i++)
 	{
 		MObject Obj;
 		Selection.getDependNode(i, Obj);

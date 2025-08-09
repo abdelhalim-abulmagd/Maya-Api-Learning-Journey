@@ -4,7 +4,6 @@ maya_port = 20241
 
 command = (
     'cmds.file(new=True, force=True)\n'
-    'cmds.refresh()\n'
     'cmds.unloadPlugin("MayaApiLearningJourney")\n'
 )
 

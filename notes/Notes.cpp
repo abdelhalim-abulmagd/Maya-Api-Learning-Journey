@@ -34,9 +34,30 @@ maya types:
 dependency graph aka (DG) directed acyclic graph:
     use connections to traverse
     its composed of : nodes and connections
+
     nodes are MObject and connections are MPlug
-    the attributes of the nodes is simply for storing data
-    and the way to access and manipulate the attributes is through MPlug
+
+    attributes:
+        simply store the name and type of the attribute
+            for ex:
+                pSphere has radius attribute so all poly sphere that crated will have radius attribute BUT the value of the radius attribute its not the same
+                each poly sphere will have its own value for the radius attribute
+    connections:
+        it simply like a wire that connect two attributes together
+        is used to passed data between nodes specifically output to input attributes
+
+
+    plug:
+        it simply like a usb ( the endpoint of the connection )
+        used to access and manipulate the attributes
+
+        if you use plug with input attribute it considered as distnation plug
+        and if you use plug with output attribute it considered as source plug
+
+        the distination plug can be retrieved from the source plug 
+        and vice versa
+        the source plug can be retrieved from the distination plug
+
 
 maya scene graph aka (DAG) Directed Acyclic Graph:
     use parent-child hierarchy to traverse 
@@ -101,6 +122,17 @@ Callbacks :
     to register a callback, use addCallback() in message classes which inherit from MMessage
     MEventMessage for general events. all events name and description in (scriptJob) page at (listEvents(le)) section
     NOTE : any function that you will send to the Callback need to have one prameter that (void* ClintData)
+
+
+
+
+
+MAnimCurve:
+    NOTE:
+        all keys of animated attributes are stored in the same node
+        for ex: pCube1 translateX has key on [5, 10, 15] you will find them in the same node called "pCube1_translateX"
+    
+        
 */
 
 
